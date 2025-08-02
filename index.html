@@ -40,7 +40,7 @@
 
     .nav-right {
       position: absolute;
-      right: 70px; /* <-- gives padding from right */
+      right: 70px;
     }
 
     .nav-item {
@@ -88,44 +88,50 @@
       background: none;
       color: #0693d7;
       position: absolute;
-      right: 24px;
+      right: 45px;
+      z-index: 1001;
     }
 
+    /* Sidebar styles */
+    .sidebar {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 200px;
+      height: 100%;
+      background-color: #0693d7;
+      padding: 80px 20px;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+      transition: right 0.3s ease;
+      z-index: 999;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .sidebar.show {
+      right: 0;
+    }
+
+    /* Responsive */
     @media (max-width: 900px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 16px;
-      }
-
-      .logo {
-        position: static;
-        margin-bottom: 10px;
-      }
-
-      .menu-toggle {
-        position: static;
-        align-self: flex-end;
-      }
-
       .nav-center,
       .nav-right {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 12px;
         display: none;
       }
 
-      .nav-center.active,
-      .nav-right.active {
-        display: flex;
+      .menu-toggle {
+        display: block;
       }
 
-      .nav-right {
-        position: static;
-        margin-top: 10px;
+      .sidebar {
+        display: flex;
       }
     }
   </style>
@@ -135,11 +141,10 @@
   <nav>
     <a href="#" class="logo">KEY</a>
 
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
-    <div class="nav-center" id="navCenter">
+    <div class="nav-center">
       <div class="nav-item"><a href="#">Home</a></div>
-
       <div class="nav-item">
         <a href="#">Our Projects ▾</a>
         <div class="dropdown">
@@ -149,20 +154,27 @@
           <a href="#">KEY Sports</a>
         </div>
       </div>
-
       <div class="nav-item"><a href="#">Events & Initiatives</a></div>
       <div class="nav-item"><a href="#">About Us</a></div>
     </div>
 
-    <div class="nav-right" id="navRight">
+    <div class="nav-right">
       <div class="nav-item"><a href="#">Contact Us</a></div>
     </div>
   </nav>
 
+  <!-- Sidebar for mobile -->
+  <div class="sidebar" id="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Our Projects</a>
+    <a href="#">Events & Initiatives</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+  </div>
+
   <script>
-    function toggleMenu() {
-      document.getElementById('navCenter').classList.toggle('active');
-      document.getElementById('navRight').classList.toggle('active');
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
     }
   </script>
 
