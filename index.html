@@ -118,6 +118,22 @@
     .sidebar.show {
       right: 0;
     }
+    .sidebar-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-dropdown {
+  display: none;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.sidebar-item.show .sidebar-dropdown {
+  display: flex;
+}
+
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -165,18 +181,34 @@
 
   <!-- Sidebar for mobile -->
   <div class="sidebar" id="sidebar">
-    <a href="#">Home</a>
-    <a href="#">Our Projects</a>
-    <a href="#">Events & Initiatives</a>
-    <a href="#">About Us</a>
-    <a href="#">Contact Us</a>
+  <a href="#">Home</a>
+  <div class="sidebar-item">
+    <a href="#" onclick="toggleDropdown(event)">Our Projects ▾</a>
+    <div class="sidebar-dropdown">
+      <a href="#">Key LITs</a>
+      <a href="#">USAMM 1103 Forum</a>
+      <a href="#">KEY Relief Work</a>
+      <a href="#">KEY Sports</a>
+    </div>
   </div>
+  <a href="#">Events & Initiatives</a>
+  <a href="#">About Us</a>
+  <a href="#">Contact Us</a>
+</div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-  </script>
+
+ <script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('show');
+  }
+
+  function toggleDropdown(event) {
+    event.preventDefault(); // Prevent anchor default behavior
+    const parent = event.target.closest('.sidebar-item');
+    parent.classList.toggle('show');
+  }
+</script>
+
 
 </body>
 </html>
