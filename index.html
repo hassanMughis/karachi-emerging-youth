@@ -14,13 +14,13 @@
       background-color: #fff;
       border-bottom: 1px solid #eee;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0 24px;
-      height: 70px;
+      justify-content: center;
       position: fixed;
-      width: 100%;
       top: 0;
+      width: 100%;
+      height: 70px;
+      padding: 0 24px;
       z-index: 1000;
     }
 
@@ -29,12 +29,18 @@
       font-weight: bold;
       font-size: 24px;
       text-decoration: none;
+      position: absolute;
+      left: 24px;
     }
 
-    .nav-links {
+    .nav-center {
       display: flex;
-      align-items: center;
       gap: 30px;
+    }
+
+    .nav-right {
+      position: absolute;
+      right: 70px; /* <-- gives padding from right */
     }
 
     .nav-item {
@@ -44,7 +50,7 @@
     .nav-item a {
       text-decoration: none;
       color: #333;
-      font-size: 16px;
+      font-size: 17px;
       transition: color 0.3s;
     }
 
@@ -74,7 +80,6 @@
       display: block;
     }
 
-    /* Responsive menu toggle */
     .menu-toggle {
       display: none;
       font-size: 26px;
@@ -82,28 +87,45 @@
       border: none;
       background: none;
       color: #0693d7;
+      position: absolute;
+      right: 24px;
     }
 
     @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
+      nav {
         flex-direction: column;
-        background: white;
-        padding: 20px;
-        gap: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        align-items: flex-start;
+        height: auto;
+        padding: 16px;
       }
 
-      .nav-links.active {
-        display: flex;
+      .logo {
+        position: static;
+        margin-bottom: 10px;
       }
 
       .menu-toggle {
-        display: block;
+        position: static;
+        align-self: flex-end;
+      }
+
+      .nav-center,
+      .nav-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 12px;
+        display: none;
+      }
+
+      .nav-center.active,
+      .nav-right.active {
+        display: flex;
+      }
+
+      .nav-right {
+        position: static;
+        margin-top: 10px;
       }
     }
   </style>
@@ -115,10 +137,8 @@
 
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-    <div class="nav-links" id="navLinks">
-      <div class="nav-item">
-        <a href="#">Home</a>
-      </div>
+    <div class="nav-center" id="navCenter">
+      <div class="nav-item"><a href="#">Home</a></div>
 
       <div class="nav-item">
         <a href="#">Our Projects ▾</a>
@@ -132,14 +152,17 @@
 
       <div class="nav-item"><a href="#">Events & Initiatives</a></div>
       <div class="nav-item"><a href="#">About Us</a></div>
+    </div>
+
+    <div class="nav-right" id="navRight">
       <div class="nav-item"><a href="#">Contact Us</a></div>
     </div>
   </nav>
 
   <script>
     function toggleMenu() {
-      const nav = document.getElementById('navLinks');
-      nav.classList.toggle('active');
+      document.getElementById('navCenter').classList.toggle('active');
+      document.getElementById('navRight').classList.toggle('active');
     }
   </script>
 
