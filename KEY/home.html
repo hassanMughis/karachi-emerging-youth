@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karachi Emerging Youth - Homepage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4A90E2; /* Lighter blue for accents */
+      --secondary: #6B9EEF; /* Even lighter blue for hover/secondary actions */
+      --background: #0A192F; /* Dark blue background */
+      --card: #1A2B40; /* Slightly darker blue for cards */
+      --foreground: #FFFFFF; /* White foreground text */
+      --muted-foreground: #E0E0E0; /* Light gray for muted text */
+      --border: #2A3E5C; /* Darker blue for borders */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(10, 25, 47, 0.95); /* Dark blue with transparency */
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--foreground);
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--foreground);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .donate-btn {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .donate-btn:hover {
+      background: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .logo img {
+  width: 55px;
+  height: 55px;
+  border-radius: 27.5px;
+}
+
+
+    .hero {
+  min-height: 130vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--background); /* fallback */
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('WhatsApp Image 2025-08-02 at 01.53.46_cc7cbcdc.jpg') center center / cover no-repeat;
+  filter: blur(6px);
+  transform: scale(1.05); /* avoid edge clipping */
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(10, 25, 47, 0.85), 
+    rgba(7, 38, 84, 0.6)
+  ); /* deeper blue overlay */
+  z-index: 1;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2; /* Above blur & overlay */
+}
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: bold;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: var(--muted-foreground);
+      font-style: italic;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(45deg, var(--secondary), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 3rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3); /* Updated shadow color */
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(74, 144, 226, 0.4); /* Updated shadow color */
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 16px 40px;
+      border: 2px solid white;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    .hero-decoration {
+      position: absolute;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .decoration-1 {
+      top: 80px;
+      right: 80px;
+      width: 128px;
+      height: 128px;
+      animation: pulse 3s infinite;
+    }
+
+    .decoration-2 {
+      bottom: 128px;
+      left: 80px;
+      width: 96px;
+      height: 96px;
+      animation: bounce 2s infinite;
+    }
+
+    .decoration-3 {
+      top: 50%;
+      right: 25%;
+      width: 64px;
+      height: 64px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <!-- Header -->
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="WhatsApp Image 2025-08-02 at 01.38.40_7166a9db.jpg" alt="Karachi Emerging Youth Logo" />
+      <span class="logo-text">Karachi Emerging Youth</span>
+    </div>
+    <nav class="nav">
+      <a href="#projects" class="nav-link">Our Projects</a>
+      <a href="#events" class="nav-link">Events & Initiatives</a>
+      <a href="#about" class="nav-link">About Us</a>
+      <a href="#contact" class="nav-link">Contact Us</a>
+    </nav>
+    <button class="donate-btn">Donate</button>
+  </div>
+</header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          To Save Humanity  <br />
+          <span class="hero-highlight">is Humanity</span>
+        </h1>
+        <p class="hero-subtitle">Empowering Youth, Building Futures</p>
+        <p class="hero-description">
+          We provide innovative programs and unwavering support to help young people thrive, 
+          develop leadership skills, and become the changemakers of tomorrow.
+        </p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary">Join Our Programs →</a>
+          <a href="#" class="btn-secondary">Key Highlights</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="hero-decoration decoration-1"></div>
+    <div class="hero-decoration decoration-2"></div>
+    <div class="hero-decoration decoration-3"></div>
+  </section>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      header.style.background = window.scrollY > 100 ? 'rgba(10, 25, 47, 0.98)' : 'rgba(10, 25, 47, 0.95)';
+    });
+  </script>
+</body>
+</html>
